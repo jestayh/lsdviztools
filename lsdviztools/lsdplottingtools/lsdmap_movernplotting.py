@@ -163,7 +163,7 @@ def GetMOverNRangeMCPoints(BasinDF, start_movern=0.2, d_movern=0.1, n_movern=7):
     ThirdQDF['threshold'] = pd.Series(FirstQF_MLEs, index=ThirdQDF.index)
     print (ThirdQDF)
     # change DF to a boolean where values are greater than the threshold
-    TempDF = ThirdQDF.drop('threshold', 1).gt(ThirdQDF['threshold'], 0)
+    TempDF = ThirdQDF.drop('threshold', 1).gt(ThirdQDF.drop('threshold', axis=1))
     # get the column names where the values are greater than the threshold for each basin
     TempDF['Range_MOverNs'] = TempDF.apply(lambda x: ','.join(x.index[x]),axis=1)
 
